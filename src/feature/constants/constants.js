@@ -1,14 +1,14 @@
 const prod = {
     url: {
-        baseURL: 'http://localhost:3001',
-        socketURL: 'http://localhost:3001'
+        baseURL: 'https://docs-collab.herokuapp.com/',
+        socketURL: 'https://docs-collab.herokuapp.com/'
     }
 };
 
 const dev = {
     url: {
-        baseURL: 'https://docs-collab.herokuapp.com/',
-        socketURL: 'https://docs-collab.herokuapp.com/'
+        baseURL: 'http://localhost:3001',
+        socketURL: 'http://localhost:3001'
     }
 };
 
