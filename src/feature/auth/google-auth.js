@@ -6,7 +6,7 @@ import { ApiInstance } from "../services/axios"
 
 import { AUTH } from "../../redux/actions/types"
 
-const clientId = '680904517023-vg36eq3ecpk139iv78278js2v53ia00o.apps.googleusercontent.com'
+const clientId = '589244231490-f9v3vih4omsasr830rqnsb4fl1bg1lsa.apps.googleusercontent.com'
 export default function GoogleAuth() {
   const [pathName, setPathName] = useState(null)
 
