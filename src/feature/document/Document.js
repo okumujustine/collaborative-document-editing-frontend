@@ -16,8 +16,8 @@ export default function Document({ myDocument }) {
             <div className="flex flex-col">
                 <small className="pb-1">MAY, 5</small>
                 <div>
-                    <h2 className="pb-3 capitalize font-bold">{myDocument.title}</h2>
-                    <p className="pb-1 text-gray-500">{myDocument.description}</p>
+                    <h2 className="pb-3 capitalize font-bold truncate">{myDocument.title}</h2>
+                    <p className="pb-1 text-gray-500 truncate">{myDocument.description}</p>
                 </div>
                 <div className="mt-2 mb-3">
                     {myDocument?.tags.map((tag) => <small className="px-2 py-1 text-blue-900 bg-blue-100 rounded-md lowercase mr-2">{tag.text}</small>)}
