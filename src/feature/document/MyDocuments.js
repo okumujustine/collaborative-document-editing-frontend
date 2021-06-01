@@ -24,7 +24,7 @@ export default function MyDocuments() {
     }, [])
 
     return (
-        <div className="w-6/12 mx-auto flex-1">
+        <div className="w-6/12 mx-auto mt-6">
             <div>
                 {!loading && myDocuments.length === 0 && <div className="flex flex-col justify-center items-center lg:mt-20">
                     <h2 className="text-2xl text-gray-500">No documents yet?, create one.</h2>

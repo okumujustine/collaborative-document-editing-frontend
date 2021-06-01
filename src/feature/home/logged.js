@@ -76,7 +76,7 @@ export default function Logged() {
     }, [])
 
     return (
-        <div className="w-6/12 mx-auto flex-1">
+        <div className="w-6/12 mx-auto mt-6">
             <div>
                 <h5 className="underline text-2xl my-6 text-blue-800">Add new note</h5>
                 <form className="flex flex-col" onSubmit={onSubmit}>
