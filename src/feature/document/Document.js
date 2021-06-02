@@ -13,9 +13,9 @@ export default function Document({ myDocument }) {
 
     return (
         <div><div onClick={() => onClickLink(myDocument._id)} className="p-6 rounded-md hover:bg-blue-50 border-2 border-gray-100 focus:outline-none block items-center mb-2 flex justify-between cursor-pointer min-h-full">
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full">
                 <small className="pb-1">MAY, 5</small>
-                <div>
+                <div className="w-full">
                     <h2 className="pb-3 capitalize font-bold truncate">{myDocument.title}</h2>
                     <p className="pb-1 text-gray-500 truncate">{myDocument.description}</p>
                 </div>
