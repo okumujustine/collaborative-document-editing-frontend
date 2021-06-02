@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from "react-router-dom"
 import { useSelector } from 'react-redux'
+import moment from 'moment'
 
 export default function Document({ myDocument }) {
     const user = useSelector(state => state?.auth?.authData)
@@ -14,7 +15,7 @@ export default function Document({ myDocument }) {
     return (
         <div><div onClick={() => onClickLink(myDocument._id)} className="p-6 rounded-md hover:bg-blue-50 border-2 border-gray-100 focus:outline-none block items-center mb-2 flex justify-between cursor-pointer min-h-full">
             <div className="flex flex-col w-full">
-                <small className="pb-1">MAY, 5</small>
+                <small className="pb-1 uppercase">{moment(myDocument.createdAt).format("MMM Do YY")}</small>
                 <div className="w-full">
                     <h2 className="pb-3 capitalize font-bold truncate">{myDocument.title}</h2>
                     <p className="pb-1 text-gray-500 truncate">{myDocument.description}</p>
