@@ -32,7 +32,10 @@ export default function TextEditor() {
         }
     }, [location])
 
+
     useEffect(() => {
+        if (!user) return
+
         ApiInstance.post('/find-document', docBody).then(res => {
             if (res.status === 200) {
                 setDoc(res?.data?.document)

@@ -28,7 +28,7 @@ export default function Document({ myDocument }) {
                     {myDocument?.tags.map((tag, index) => <small key={index} className="px-2 py-1 text-blue-900 bg-blue-100 rounded-md lowercase mr-2">{`#${tag.text}`}</small>)}
                 </div>
                 <small className="font-bold truncate">
-                    Role: {myDocument?.admin?.email !== user?.result?.email ? <span><span className="bg-white text-sm text-blue-800">({myDocument?.admin?.email})</span> <span className="text-red-800 text-sm">editor</span></span> : <span className="px-2 text-yellow-800 text-sm">admin</span>}
+                    Role: {myDocument?.admin?.email !== user?.result?.email ? <span> <span className="text-red-800 text-sm">editor</span></span> : <span className="px-2 text-yellow-800 text-sm">admin</span>}
                 </small>
             </div>
         </div></div>
