@@ -21,9 +21,9 @@ export default function Navbar() {
             </div>
             <div className="flex flex-row items-center">
                 <NavLink className="hover:border-blue-900 hover:border-b-2 px-2 mx-2 border-b-2 border-white py-1" to="/">Home</NavLink>
+                <NavLink className="hover:border-blue-900 hover:border-b-2 px-2 mx-2 border-b-2 border-white py-1" to="/documents">Documents</NavLink>
                 {user?.result ?
                     <div className="flex flex-row items-center">
-                        <NavLink className="hover:border-blue-900 hover:border-b-2 px-2 mx-2 border-b-2 border-white py-1" to="/documents">Documents</NavLink>
                         <div className=" hidden lg:block px-3 capitalize">{user?.result?.name}</div>
                         <button onClick={logout} className="bg-red-800 hover:bg-red-500 lg:px-3 px-1 py-1 text-white focus:outline-none">
                             LOGOUT

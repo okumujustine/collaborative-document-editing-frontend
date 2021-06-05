@@ -3,6 +3,7 @@ import { GoogleLogin } from 'react-google-login';
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, useLocation, useHistory } from 'react-router-dom'
 import { ApiInstance } from "../services/axios"
+import { useAlert } from 'react-alert'
 
 import { AUTH } from "../../redux/actions/types"
 
@@ -13,6 +14,7 @@ export default function GoogleAuth() {
   const location = useLocation()
   const history = useHistory()
   const dispatch = useDispatch()
+  const alert = useAlert()
   const user = useSelector(state => state?.auth?.authData)
 
   useEffect(() => {
@@ -37,15 +39,15 @@ export default function GoogleAuth() {
           history.push(pathName)
         }
       } catch (error) {
-        alert("Error while logging in to the app")
+        alert.error("Error while logging in to the app")
       }
     }).catch(() => {
-      alert("Internal server error, try again later")
+      alert.error("Internal server error, try again later")
     })
 
   };
 
-  const googleError = () => alert('Google Sign In was unsuccessful. Try again later');
+  const googleError = () => alert.error('Google Sign In was unsuccessful. Try again later');
 
   return (
     <div className="flex justify-center items-center">

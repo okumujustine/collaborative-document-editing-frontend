@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useAlert } from 'react-alert'
 
 import { ApiInstance } from "../services/axios"
 import Document from "./Document"
@@ -10,6 +11,7 @@ export default function MyDocuments() {
     const [myDocuments, setMyDocuments] = useState([])
 
     const user = useSelector(state => state?.auth?.authData)
+    const alert = useAlert()
 
     useEffect(() => {
         setLoading(true)
@@ -20,7 +22,7 @@ export default function MyDocuments() {
             }, 2000)
         })
             .catch(() => {
-                alert("Failed to get your documents")
+                alert.error("Failed to get your documents")
                 setLoading(false)
             })
         // eslint-disable-next-line       
