@@ -17,6 +17,7 @@ export default function TextEditor() {
     const [quill, setQuil] = useState()
     const [doc, setDoc] = useState()
     const [editorEmail, setEditorEmail] = useState("")
+    const [docAdmin, setDocAdmin] = useState("")
 
     const history = useHistory()
     const location = useLocation()
@@ -24,6 +25,12 @@ export default function TextEditor() {
 
     const user = useSelector(state => state?.auth?.authData)
     const docBody = { documentId: documentId, email: user?.result?.email }
+
+    useEffect(() => {
+        if (location?.state && location?.state?.admin) {
+            setDocAdmin(location?.state?.admin)
+        }
+    }, [location])
 
     useEffect(() => {
         ApiInstance.post('/find-document', docBody).then(res => {
@@ -132,7 +139,7 @@ export default function TextEditor() {
         if (editorEmail === user?.result?.email) return alert.error("You can't add yourself as editor")
         if (doc?.editors.includes(editorEmail)) return alert.error(`${editorEmail} is already a editor`)
 
-        ApiInstance.post('/add-editor', { editorEmail, documentId: documentId, adminId: user?.result?._id }).then(editor => {
+        ApiInstance.post('/add-editor', { editorEmail, documentId: documentId, adminId: user?.result?._id, adminEmail: user?.result?.email, documentURL: window.location.href }).then(editor => {
             setDoc(editor?.data?.document)
             setEditorEmail("")
         }).catch(() => {
@@ -145,23 +152,25 @@ export default function TextEditor() {
     }
 
     return (
-        <div className="flex mt-6 mx-6">
-            <div className="w-3/12 flex flex-col">
-                <div>
+        <div className="lg:flex-row flex-col flex mt-6 lg:mx-6 mx-2">
+            <div className="lg:w-3/12 flex-10/12 flex flex-col mb-4 lg:mb-0">
+                {user?.result?._id === docAdmin?._id && <div>
                     <form className="flex flex-col mb-4" onSubmit={onSubmitEditor}>
                         <label>Add Editor</label>
-                        <input value={editorEmail} onChange={(e) => setEditorEmail(e.target.value)} className="w-9/12 border border-gray-800 px-2 focus:outline-none" placeholder="email address .." type="email" />
-                        <button className="w-9/12  text-white hover:bg-blue-600 mt-2 bg-blue-800 shadow-md rounded-sm">Add</button>
+                        <div className="flex flex-row lg:flex-col">
+                            <input value={editorEmail} onChange={(e) => setEditorEmail(e.target.value)} className="w-10/12 border border-gray-800 px-2 focus:outline-none" placeholder="email address .." type="email" />
+                            <button className="w-20 lg:w-10/12 ml-2 lg:ml-0  text-white hover:bg-blue-600 mt-2 bg-blue-800 shadow-md rounded-sm">Add</button>
+                        </div>
                     </form>
-                </div>
+                </div>}
                 <h2 className="underline font-bold">Editors</h2>
                 <div className="mt-1">
-                    <ol>
-                        {doc?.editors.map((editor, index) => <li key={index}>{`${index + 1}. `} {editor}</li>)}
-                    </ol>
+                    <div className="overflow-x-scroll lg:flex lg:flex-col">
+                        {doc?.editors.map((editor, index) => <span className="mr-2" key={index}>{editor},</span>)}
+                    </div>
                 </div>
             </div>
-            <div className="w-8/12" ref={wrapperRef}></div>
+            <div className="lg:w-8/12 w-full" ref={wrapperRef}></div>
         </div>
     )
 }

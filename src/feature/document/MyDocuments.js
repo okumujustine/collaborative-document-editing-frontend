@@ -27,7 +27,7 @@ export default function MyDocuments() {
     }, [])
 
     return (
-        <div className="w-6/12 mx-auto mt-6">
+        <div className="lg:w-6/12 w-11/12 mx-auto mt-6">
             <div>
                 {loading &&
                     <div className="flex flex-col justify-center items-center lg:mt-20">
