@@ -18,6 +18,7 @@ export default function TextEditor() {
     const [doc, setDoc] = useState()
     const [editorEmail, setEditorEmail] = useState("")
     const [docAdmin, setDocAdmin] = useState("")
+    const [isAdding, setIsAdding] = useState(true)
 
     const history = useHistory()
     const location = useLocation()
@@ -138,6 +139,7 @@ export default function TextEditor() {
 
     function onSubmitEditor(e) {
         e.preventDefault()
+        setIsAdding(true)
         if (!editorEmail) return alert.error("Editors email must be provided")
         if (editorEmail === user?.result?.email) return alert.error("You can't add yourself as editor")
         if (doc?.editors.includes(editorEmail)) return alert.error(`${editorEmail} is already a editor`)
@@ -145,8 +147,10 @@ export default function TextEditor() {
         ApiInstance.post('/add-editor', { editorEmail, documentId: documentId, adminId: user?.result?._id, adminEmail: user?.result?.email, documentURL: window.location.href }).then(editor => {
             setDoc(editor?.data?.document)
             setEditorEmail("")
+            setIsAdding(false)
         }).catch(() => {
             alert.error("Failed to editor")
+            setIsAdding(false)
         })
 
     }
@@ -159,10 +163,13 @@ export default function TextEditor() {
             <div className="lg:w-3/12 flex-10/12 flex flex-col mb-4 lg:mb-0">
                 {user?.result?._id === docAdmin?._id && <div>
                     <form className="flex flex-col mb-4" onSubmit={onSubmitEditor}>
-                        <label>Add Editor</label>
+                        <label className="underline font-medium">Invite Editor</label>
                         <div className="flex flex-row lg:flex-col">
                             <input value={editorEmail} onChange={(e) => setEditorEmail(e.target.value)} className="w-10/12 border border-gray-800 px-2 focus:outline-none" placeholder="email address .." type="email" />
-                            <button className="w-20 lg:w-10/12 ml-2 lg:ml-0  text-white hover:bg-blue-600 mt-2 bg-blue-800 shadow-md rounded-sm">Add</button>
+                            {isAdding ?
+                                <button className="w-20 lg:w-10/12 ml-2 lg:ml-0  cursor-not-allowed bg-gray-200 border border-gray-700 text-gray-700 mt-2 shadow-md rounded-sm">Adding Editor ...</button>
+                                : <button className="w-20 lg:w-10/12 ml-2 lg:ml-0  text-white hover:bg-blue-600 mt-2 bg-blue-800 shadow-md rounded-sm">Invite Editor</button>
+                            }
                         </div>
                     </form>
                 </div>}

@@ -20,7 +20,7 @@ export default function MyDocuments() {
             setTimeout(() => {
                 setMyDocuments(response?.data?.documents)
                 setLoading(false)
-            }, 2000)
+            }, 1000)
         })
             .catch(() => {
                 alert.error("Failed to get your documents")

@@ -20,14 +20,14 @@ export default function Navbar() {
                 <NavLink className="text-2xl font-bold pr-10" to="/">DE</NavLink>
             </div>
             <div className="flex flex-row items-center">
-                <NavLink className="hover:border-blue-900 hover:border-b-2 px-2 mx-2 border-b-2 border-white py-1" to="/">Home</NavLink>
-                <NavLink className="hover:border-blue-900 hover:border-b-2 px-2 mx-2 border-b-2 border-white py-1" to="/documents">Documents</NavLink>
+                <NavLink className="hover:border-gray-900 hover:border-b-2 px-2 mx-2 border-b border-white py-1" to="/home" activeClassName="border-gray-900 border-b">Add Note</NavLink>
+                {user?.result ? <NavLink className="hover:border-gray-900 hover:border-b-2 px-2 mx-2 border-b border-white py-1" to="/documents" activeClassName="border-gray-900 border-b">Documents</NavLink> : null}
                 {user?.result ?
                     <div className="flex flex-row items-center">
-                        <div className=" hidden lg:block px-3 capitalize">{user?.result?.name}</div>
+                        <div className=" hidden lg:block px-3 capitalize text-blue-800 font-bold">{user?.result?.name.toLowerCase()}</div>
                         <button onClick={logout} className="bg-red-800 hover:bg-red-500 lg:px-3 px-1 py-1 text-white focus:outline-none">
                             LOGOUT
-                </button>
+                        </button>
                     </div>
                     :
                     <NavLink to="/auth" className="bg-green-800 hover:bg-green-500 px-3 py-1 text-white font-bold focus:outline-none">LOGIN</NavLink>
