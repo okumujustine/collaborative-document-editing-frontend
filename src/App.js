@@ -11,6 +11,7 @@ import MyDocuments from "./feature/document/MyDocuments"
 import AuthForm from "./feature/auth/auth-form"
 import Navbar from "./components/navbar"
 import ProtectedRoute from "./components/protected-route"
+import NotFound from "./feature/notfound/NotFound"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/auth" component={AuthForm} />
           <ProtectedRoute exact path="/documents" component={MyDocuments} />
           <ProtectedRoute exact path="/documents/:id" component={TextEditor} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import classNames from 'classnames'
 
 import { LOGOUT } from "../redux/actions/types"
 
@@ -20,7 +21,7 @@ export default function Navbar() {
                 <NavLink className="text-2xl font-bold pr-10" to="/">DE</NavLink>
             </div>
             <div className="flex flex-row items-center">
-                <NavLink className="hover:border-gray-900 hover:border-b-2 px-2 mx-2 border-b border-white py-1" to="/home" activeClassName="border-gray-900 border-b">Add Note</NavLink>
+                <NavLink className="hover:border-gray-900 hover:border-b-2 px-2 mx-2 border-b border-white py-1" to="/home" activeClassName={classNames("border-gray-900 border-b")}>{user?.result?.name ? <span>Add Note</span> : <span>Home</span>} </NavLink>
                 {user?.result ? <NavLink className="hover:border-gray-900 hover:border-b-2 px-2 mx-2 border-b border-white py-1" to="/documents" activeClassName="border-gray-900 border-b">Documents</NavLink> : null}
                 {user?.result ?
                     <div className="flex flex-row items-center">
